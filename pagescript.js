@@ -1,5 +1,14 @@
-let money = prompt('Ваш бюджет на месяц?');
-let time = prompt('Введите дату в формате YYYY-MM-DD');
+let money, time;
+
+function start() {
+    money = +prompt('Ваш бюджет на месяц?');
+    time = prompt('Введите дату в формате YYYY-MM-DD');
+
+    while(isNaN(money) || money == "" || money == null) {
+        money = +prompt('Ваш бюджет на месяц?');
+    }
+}
+start();
 
 let appData = {
     budget: money,
@@ -10,7 +19,8 @@ let appData = {
     savings = false
 };
 
-for (i = 0; i < 2; i++) {
+function chooseExpenses() {
+  for (i = 0; i < 2; i++) {
     let a = +prompt('Введите обязательную статью расходов в этом месяце'),
         b = prompt('Во сколько это обойдётся?');
 
@@ -22,7 +32,9 @@ for (i = 0; i < 2; i++) {
         console.log('bad result')
         i--;
     }
-};
+  }
+}
+chooseExpenses;
 
 //Цикл while
 //let i=0;
@@ -58,7 +70,7 @@ for (i = 0; i < 2; i++) {
 //}
 //while (i < 2);
 
-appData.moneyPerDay = appData.budget / 30;
+appData.moneyPerDay = (appData.budget / 30).toFixed(2);
 
 alert('Ваш бюджет на сегодня: ' + appData.moneyPerDay + ' руб.');
 
